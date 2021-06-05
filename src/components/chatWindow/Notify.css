@@ -1,0 +1,56 @@
+.notify-request{
+    display: flex;
+    align-items: center;
+    height: auto;
+    padding: 1rem;
+    background: none;
+    border-bottom: 1px solid gray;
+    width: 100%;
+    justify-content: space-between;
+}
+.notify-request img{
+    width: 20px;
+    height: 20px;
+    /* margin-left: 40px; */
+    /* position: relative; */
+    /* right: 0; */
+}
+
+.for-btn{
+    display: flex;
+    align-items: center;
+
+}
+
+.btn-accpet{
+    font-size: 1rem;
+    width: 5rem;
+    height: 2rem;
+    color: rgb(8, 7, 7);
+    border: none;
+    background-color: rgb(248, 241, 241);
+    outline: none;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.btn-reqdlt{
+    font-size: 1rem;
+    width: 5rem;
+    height: 2rem;
+    color: rgb(245, 235, 235);
+    border: 1px solid white;
+    background: none;
+    /* background-color: rgb(236, 12, 12); */
+    outline: none;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.noti-msg-request{
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: white;
+}
+
+

@@ -1,0 +1,373 @@
+.hide{
+  display: none;
+}
+
+.online{
+  color: #00c9c8;
+}
+
+.empty-noti{
+
+  color: white;
+  align-items: center;
+  text-align: center;
+}
+
+.newmeesage{
+  color: red;
+}
+
+.time{
+  /* margin-right: 5px; */
+  color: #00c9c8;
+}
+.reciever{
+  font-size: 0.8rem;
+  /* margin-right: 4px; */
+  background-color: #303030;
+  display: block;
+  width: 100%;
+  color: gray;
+}
+.chat-main {
+  display: flex;
+  position: fixed;
+  border: 1px solid #2d3038;
+  width: 90vw;
+  height: 95vh;
+  align-items: stretch;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+
+.chat-left {
+  width: 30%;
+  border-right: 1px solid #2d3038;
+}
+
+.profile {
+  background-color: #00c9c8;
+  display: flex;
+  align-items: center;
+  height: 10%;
+  padding: 0.5rem 1.5rem;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.profile img {
+  /* margin-left: 0.5rem; */
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+}
+
+.prof {
+  display: flex;
+  align-items: center;
+}
+.noti {
+  /* border: 2px solid white; */
+  display: flex;
+  align-items: center;
+}
+
+.noti svg {
+  margin: 0rem 0.25rem;
+  cursor: pointer;
+}
+.profile .prof h1 {
+  font-size: 1.3rem;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  font-weight: 400;
+  margin: 0rem 1rem;
+}
+
+/* for contact */
+
+.list-contact {
+  /* padding-top: 1rem; */
+  background-color: #2a272a;
+  overflow-y: scroll;
+  height: 90%;
+}
+
+.list-contact::-webkit-scrollbar {
+  display: none;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  height: auto;
+  padding: 1rem 1.5rem;
+  justify-content: space-between;
+  border-bottom: 0.2px solid rgb(70, 70, 70);
+  cursor: pointer;
+}
+
+.contact-in {
+  display: flex;
+  align-items: center;
+}
+
+.contact .contact-in img {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+}
+
+.contact-in .name-chat {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  margin-left: 1rem;
+}
+
+.name-chat h1 {
+  font-size: 1rem;
+  font-weight: 300;
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
+
+.name-chat p {
+  font-size: 0.8rem;
+  font-weight: 300;
+  font-family: "Poppins", sans-serif;
+  color: gray;
+}
+
+.time {
+  font-size: 0.8rem;
+  font-weight: 300;
+  font-family: "Poppins", sans-serif;
+  color: gray;
+}
+
+/* message box */
+
+.message-box {
+  width: 70%;
+  background-color: white;
+  height: 100%;
+}
+
+.profile-chat {
+  background-color: #00c9c8;
+  display: flex;
+  align-items: center;
+  height: 10%;
+  padding: 0.5rem 1rem;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.prof-chat {
+  display: flex;
+  align-items: center;
+}
+
+.noti-chat {
+  /* border: 2px solid white; */
+  display: flex;
+  align-items: center;
+}
+
+.noti-chat svg {
+  margin: 0rem;
+  margin-left: 0.5rem;
+}
+.profile-chat .prof-chat h1 {
+  font-size: 1.3rem;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  font-weight: 400;
+  margin: 0rem 1rem;
+}
+
+.profile-chat img {
+  /* margin-left: 0.5rem; */
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+}
+
+.bottom-chat {
+  position: relative;
+  bottom: 0rem;
+  left: 0rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 7%;
+  /* justify-content: center; */
+  background-color: #2a272a;
+}
+
+/* .bottom-chat form {
+  display: block;
+} */
+
+.bottom-chat input {
+  width: 94%;
+  height: 100%;
+  /* max-height: 4rem; */
+  /* display: block; */
+  padding: 0.8rem 1rem;
+  color: white;
+  outline: none;
+  font-size: 1rem;
+  /* margin-right: 2rem; */
+  /* border-radius: 50px; */
+  background-color: #303030;
+  border: 1px solid #00c9c8;
+  /* margin: 0rem 1rem; */
+}
+
+.bottom-chat button {
+  width: 6%;
+  height: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  /* padding: auto 0rem; */
+  background-color: #00c9c8;
+}
+
+.box-main {
+  height: 83%;
+  overflow-y: scroll;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #303030;
+}
+
+.box-main::-webkit-scrollbar {
+  display: none;
+}
+
+.messages {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.message svg {
+  margin-right: 0.5rem;
+}
+
+.message {
+  max-width: 26rem;
+  width: auto;
+
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message p {
+  /* padding: 0.6rem 1rem; */
+  height: auto;
+  font-size: 1rem;
+  font-weight: 300;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.message p p {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 5px;
+}
+.left {
+  float: left;
+  padding: 0rem;
+  margin-left: 0rem;
+}
+
+.left-color {
+  color: #ffffff;
+  background-color: rgb(122 122 122);
+  box-shadow: 1px 1px 5px rgba(173, 173, 173, 0.1);
+}
+
+.right-color div {
+  width: 100%;
+  display: block;
+  background-color: #303030;
+  padding-top: 0.2rem;
+}
+
+.right-color div svg {
+  float: right;
+}
+
+.right-color {
+  color: white;
+  background-color: #00c9c8;
+}
+
+.right {
+  float: right;
+  margin-right: 0rem;
+  padding-right: 0rem;
+}
+
+/* modals */
+
+.modal {
+  padding: 1rem;
+}
+
+.heading-contact {
+  font-size: 2rem;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  color: #00c9c8;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.modal input {
+  padding: 0.6rem 1rem;
+  border: 1px solid white;
+  color: white;
+  background: none;
+  outline: none;
+  margin-bottom: 1rem;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  border-radius: 4px;
+}
+
+.btn-contact {
+  border-radius: 4px;
+  background-color: #00c9c8;
+  color: white;
+  text-transform: uppercase;
+  width: 100%;
+  /* display: block; */
+  height: 2.4rem;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 2px;
+}
+
+.ReactModal__Content::-webkit-scrollbar{
+  display: none;
+}
