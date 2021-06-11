@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Chat.css'
-import { MdAccountCircle, MdNotifications, MdSettings,MdExitToApp } from "react-icons/md";
+import { MdAccountCircle, MdNotifications, MdSettings,MdExitToApp,MdGroupAdd } from "react-icons/md";
 import img from '../../images/download.jpg'
 import Modal from 'react-modal';
 import { useHistory } from 'react-router';
@@ -8,7 +8,9 @@ import Notify from '../chatWindow/Notify'
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios'
 import SockJsClient from "react-stomp"
-
+import { IoPersonAddSharp } from "react-icons/io5";
+import { AiOutlineUsergroupAdd } from "react-icons/ai";
+import {ip} from '../ipvalue'
 function Profile(props) {
     const [isOpen, setIsOpen] = useState(false);
     const [isContact, setIsContact] = useState(false);
@@ -17,9 +19,10 @@ function Profile(props) {
     const [adduser,setAdduser] = useState({});
     const [notifications,setnotifications] = useState([]);
     const [clientRef,setclientRef] = useState({})
-    
+    const [groupmodel,setGroupModel] = useState(false)
+    const [groupinfo,setGroupInfo] = useState({})
     const history = useHistory();
-
+    const ipaddr =`http://${ip}/chat`;
     useEffect(() => {
         // getNotifications();
         setUser(props.curuser)
@@ -33,7 +36,7 @@ function Profile(props) {
             axios.defaults.headers = {
                 Authorization: `Bearer ` + localStorage.getItem('token')
             }
-            axios.post(`http://localhost:8081/getNotification`, JSON.stringify(props.curuser.mobile)).then(
+            axios.post(`http://${ip}/getNotification`, JSON.stringify(props.curuser.mobile)).then(
                 (response) => {
                     setnotifications(response.data.data)
                 },
@@ -69,7 +72,7 @@ function Profile(props) {
             axios.defaults.headers = {
                 Authorization: `Bearer ` + localStorage.getItem('token')
             }
-            axios.post(`http://localhost:8081/deleteNotification`, JSON.stringify(nid)).then(
+            axios.post(`http://${ip}/deleteNotification`, JSON.stringify(nid)).then(
                 (response) => {
                     getNotifications();
                 },
@@ -90,7 +93,7 @@ function Profile(props) {
             axios.defaults.headers = {
                 Authorization: `Bearer ` + localStorage.getItem('token')
             }
-            axios.post(`http://localhost:8081/addUseToContact`, JSON.stringify(nid)).then(
+            axios.post(`http://${ip}/addUseToContact`, JSON.stringify(nid)).then(
                 (response) => {
                     getNotifications();
                     console.log(response.data.data)
@@ -115,8 +118,23 @@ function Profile(props) {
             //   marginRight           : '-50%',
             transform: 'translate(-50%, -50%)',
             backgroundColor: '#303030',
-            width:'40vw',
+            width:'30vw',
             height:"40vh",
+            overflow:"scroll"
+
+        }
+    };
+    const customStyle1 = {
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            //   marginRight           : '-50%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: '#303030',
+            width:'40vw',
+            height:"50vh",
             overflow:"scroll"
 
         }
@@ -148,7 +166,7 @@ function Profile(props) {
             Authorization:`Bearer `+localStorage.getItem('token')
         }
         
-       axios.post(`http://localhost:8081/adduser`,JSON.stringify(adduser)).then(
+       axios.post(`http://${ip}/adduser`,JSON.stringify(adduser)).then(
            (response) => {
             //    debugger;
                 console.log(response.data);
@@ -181,7 +199,45 @@ function Profile(props) {
         // setIsNoti(true)
     }
 
-    
+    const openGroupModel = () => {
+        console.log("fdsf")
+        setGroupModel(true)
+    }
+
+    const createGroup = (e) =>{
+        e.preventDefault();
+        debugger
+        setGroupInfo(groupinfo)
+        if (groupinfo.price === '0') {
+            setGroupInfo({...groupinfo,freeOrNot:true})
+        }else{
+            setGroupInfo({...groupinfo,freeOrNot:false})
+        }
+        
+        console.log(groupinfo)
+        postDataToServer()
+    }
+
+    const postDataToServer = () => {
+        
+        console.log(groupinfo)
+        axios.defaults.headers={
+            Authorization:`Bearer `+localStorage.getItem('token')
+        }
+        
+       axios.post(`http://${ip}/stock/group`,groupinfo).then(
+           (response) => {
+                console.log(response.data)
+                toast('Group Is Created',{ position: toast.POSITION.TOP_CENTER })
+                props.addUserToList()
+                setGroupModel(false)
+            },
+           (Error) => {
+               console.log(Error);
+           }
+       )
+    }
+
     return (
         <div className="profile">
             <div className="prof">
@@ -192,9 +248,10 @@ function Profile(props) {
             </h1>
             </div>
             <div className="noti">
-                <MdAccountCircle onClick={openContactModel} color="white" size="1.5rem"></MdAccountCircle>
-                <MdNotifications  onClick={openNotiModal} color="white" size="1.5rem"></MdNotifications><p id="notiornot" className="hide" >*</p>
-                <MdExitToApp onClick={logout} color="white" size="1.5rem"></MdExitToApp>
+                <MdGroupAdd onClick={openGroupModel} color="white" size="2.1rem" cursor="pointer"></MdGroupAdd>
+                <IoPersonAddSharp onClick={openContactModel} color="white" size="1.5rem" cursor="pointer"></IoPersonAddSharp>
+                <MdNotifications  onClick={openNotiModal} color="white" size="1.5rem" cursor="pointer"></MdNotifications><p id="notiornot" className="hide" >*</p>
+                <MdExitToApp onClick={logout} color="white" size="1.5rem" cursor="pointer"></MdExitToApp>
             </div>
             <Modal
                 isOpen={isOpen}
@@ -224,8 +281,34 @@ function Profile(props) {
                             </div>
                         </div>
                 }
+                
             </Modal>
-            <SockJsClient url="http://localhost:8081/chat" topics={["/topic/notimessages/"+user.mobile]}
+            <Modal
+                isOpen={groupmodel}
+                onRequestClose={() => {
+                    setGroupModel(false)
+                }}
+                style={customStyle1}>
+                {
+                    groupmodel ? 
+                    <div className="modal">
+                            <h1 className="heading-contact">Create Group</h1>
+                            <div className="form-contact">
+                                <label htmlFor=""></label>
+                                <input type="text" id="name" name="name" onChange={(e) => setGroupInfo({...groupinfo,groupName:e.target.value})} placeholder="Enter Name here..."></input>
+                                <input type="text" id="desc" name="desc" onChange={(e) => setGroupInfo({...groupinfo,desc:e.target.value})} placeholder="Enter Description here..."></input>
+                                <input type="number" id="price" name="price" onChange={(e) => setGroupInfo({...groupinfo,price:e.target.value})} placeholder="Enter price here..."></input>
+                                {/* <input type="radio" id="free" value="free" onChange={setGroupInfo({...groupinfo,freeOrNot:false})} >Free</input>
+                                <input type="radio" id="free" value="notfree" onChange={setGroupInfo({...groupinfo,freeOrNot:false})} >Paid</input> */}
+                                <button onClick={createGroup} className="btn-contact">Add</button>
+                            </div>
+                        </div>
+                    :
+                    <div></div>    
+                }
+                
+            </Modal>
+            <SockJsClient url={ipaddr} topics={["/topic/notimessages/"+user.mobile]}
                     onMessage={onNotificationReceive } 
                     ref={ (client) => { 
                         setclientRef(client)  

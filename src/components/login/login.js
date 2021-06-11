@@ -6,6 +6,8 @@ import {messaging} from '../web-push/init-fcm'
 import './login.css'
 import img from '../../images/iphone02.png'
 import {Link} from 'react-router-dom';
+import {ip} from '../ipvalue'
+
 // const NodeRSA = require('node-rsa');
 
 const Login = (props) => {
@@ -28,7 +30,7 @@ const Login = (props) => {
         console.log(record)
         setrecord(record)
         postdatatoserver()
-        localStorage.setItem('token',record.username);
+        localStorage.setItem('usernamex',record.username);
     }
 
     const postdatatoserver = () => {
@@ -36,7 +38,7 @@ const Login = (props) => {
         var form_data = new FormData();
          form_data.set('username',record.username)
          form_data.set('password',record.password)
-        axios.post(`http://localhost:8081/loginrequest`,form_data).then(
+        axios.post(`http://${ip}/loginrequest`,form_data).then(
             (response) => {
                 console.log(response);
                 console.log(response.data);
@@ -51,11 +53,13 @@ const Login = (props) => {
                     // console.log(setLoggedinUser)
                     // props.setLoggedinUser(response.data.data)
                     console.log(response.data.data)
-                    messaging.requestPermission()
+                    
+                    if (messaging!=null) {
+                        messaging.requestPermission()
                             .then(async function() {
                                 const token = await messaging.getToken();
                                 console.log(token)
-                                axios.post(`http://localhost:8081/noti`,JSON.stringify(token)).then(
+                                axios.post(`http://${ip}/noti`,JSON.stringify(token)).then(
                                     (response) => {
                                         console.log(response.data);
                                     },
@@ -67,9 +71,14 @@ const Login = (props) => {
                             .catch(function(err) {
                                 console.log("Unable to get permission to notify.", err);
                             });
+                    } 
                     history.push({pathname:'/',state:{data : response.data.data}})
                 }else if(response.data.data === "Wrong username or password"){
                         alert('Wrong username or password')
+                }else if (response.data.data === "Number is not verified") {
+                        alert('first verify mobile number')
+                        localStorage.setItem('mobile',response.data.data.mobile)   
+                        props.history.push('/verify')
                 }
             },
             (Error) => {

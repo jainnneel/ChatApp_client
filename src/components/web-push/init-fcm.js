@@ -13,11 +13,13 @@ const firebaseConfig = {
   };
 
 const initializedFirebaseApp = firebase.initializeApp(firebaseConfig);
+const messaging = firebase.messaging.isSupported() ? initializedFirebaseApp.messaging() : null
+// const messaging = initializedFirebaseApp.messaging();
+if(messaging != null){
+  messaging.usePublicVapidKey(
+    "BKokfypvDo10LpwD-cu56XmJbBbQADMj4zTxSgbYA-5Ff2A4FrpXjKDZvLkLIiv-9ZIoeigTQh9QO-OlsTMJ680"
+  );
+}
 
-const messaging = initializedFirebaseApp.messaging();
-
-messaging.usePublicVapidKey(
-  "BKokfypvDo10LpwD-cu56XmJbBbQADMj4zTxSgbYA-5Ff2A4FrpXjKDZvLkLIiv-9ZIoeigTQh9QO-OlsTMJ680"
-);
 
 export { messaging };

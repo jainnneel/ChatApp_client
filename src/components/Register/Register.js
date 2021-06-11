@@ -3,7 +3,7 @@ import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import  { Redirect } from 'react-router-dom'
 import img from '../../images/iphone02.png'
-
+import {ip} from '../ipvalue'
 
 const Register = (props) => {
     const history = useHistory();
@@ -17,27 +17,29 @@ const Register = (props) => {
     const [record,setrecord] = useState({
         username:"",
         mobile:"",
-        password:"",
+        pass:"",
     }); 
     const [loader,setloader] = useState(true);
     const register = (e) => {
         e.preventDefault();
         console.log(record)
+        // debugger
         setrecord(record)
         postdatatoserver()
     }
 
     const postdatatoserver = () => {
-        axios.post(`http://localhost:8081/register`,record).then(
+        axios.post(`http://${ip}/register`,record).then(
             (response) => {
                 console.log(response.data);
-                document.getElementById('username').value = ''
-                document.getElementById('mobile').value = ''
-                document.getElementById('pass').value = ''
+                // document.getElementById('username').value = ''
+                // document.getElementById('mobile').value = ''
+                // document.getElementById('pass').value = ''
                 setloader(true)
 
                 if((response.data.status === "otp send" && response.data.httpStatus === "OK") || response.data.data ==="user mobile not verified !! otp send plz verify"){
-                       props.history.push('/Otpverify')
+                    localStorage.setItem('mobile',record.mobile)   
+                    props.history.push('/verify')
                 }else if(response.data.status === "invalid data"){
                         alert('Data is not in required format')
                 }else if(response.data.data === "user already exist"){
@@ -80,8 +82,8 @@ const Register = (props) => {
                                 mobile no.</label>
                             </div>
                             <div className="box-login">
-                                <input onChange={(e) => setrecord({...record,password:e.target.value})}
-                                id="password" name="password" value={record.password} type="password"   />
+                                <input onChange={(e) => setrecord({...record,pass:e.target.value})}
+                                id="password" name="password" value={record.pass} type="password"   />
                                 <label className="label-login" htmlFor="password">
                                 password</label>
                             </div>

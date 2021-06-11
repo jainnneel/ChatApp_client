@@ -2,6 +2,219 @@
   display: none;
 }
 
+.btn-join1{
+    font-size: 1rem;
+    width: 5rem;
+    height: 2rem;
+    color: rgb(255, 255, 255);
+    border: none;
+    background-color: rgb(75, 100, 245);
+    outline: none;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.userlistmodel2::-webkit-scrollbar {
+  display: none;
+}
+
+.userinfo2{
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.userinfolistmodel{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  border-bottom: 1px solid gray;
+}
+
+.userinfolistmodel img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  margin-right: 2rem;
+}
+
+.mobile1{
+  font-size: 1rem;
+  font-weight: lighter;
+  color:gray;
+  margin-bottom: 0.5rem;
+}
+
+.username1{
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.userlistmodel2{
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  width: 100%;
+  overflow-y : scroll;
+}
+
+.titlemodeluser{
+  font-size: 2rem;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.userlistmodel{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 1rem; */
+  width:  100%;
+  height: 100%;
+}
+
+.admininfo{
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  margin-top: 2rem;
+}
+
+.admininfo h1{
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.admininfo p{
+  font-size: 1.2rem;
+  font-weight: lighter;
+  color: rgb(48, 137, 196);
+  margin-bottom: 0.5rem;
+}
+
+
+.groupmem{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.groupmem p{
+  font-size: 1rem;
+  font-weight: bold;
+  color: #00c9c8;
+}
+
+
+
+.groupdesc{
+  font-weight: lighter;
+  color: gray;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.groupname{
+  font-weight: bold;
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.groupInfo{
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  width: 15rem;
+}
+.grouptitlemodel img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  margin-right: 2rem;
+}
+
+.grouptitlemodel{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.groupModel{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 2rem;
+  width: 100%;
+  height: 100%;
+}
+
+.userInfoModel{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 4rem;
+  align-items: center;
+}
+
+.userInfoModel img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  margin-bottom: 2rem;
+}
+
+.usermobile{
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: gray;
+}
+
+.username{
+  font-weight: 500;
+  font-size: 2rem;
+  color: rgb(236, 228, 228);
+  margin-bottom: 1rem;
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: all 500ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+.userlists{
+  color: #ffffff;
+}
+
 .online{
   color: #00c9c8;
 }
