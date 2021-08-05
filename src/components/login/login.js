@@ -7,6 +7,7 @@ import './login.css'
 import img from '../../images/iphone02.png'
 import {Link} from 'react-router-dom';
 import {ip} from '../ipvalue'
+import NodeRSA from 'node-rsa';
 
 // const NodeRSA = require('node-rsa');
 
@@ -62,6 +63,14 @@ const Login = (props) => {
                                 axios.post(`http://${ip}/noti`,JSON.stringify(token)).then(
                                     (response) => {
                                         console.log(response.data);
+                                        debugger;
+                                        const key  = new NodeRSA({b:1024});
+                                        let secrete = "dsdsdsa  dsda";
+                                        console.log(key.exportKey('public'));
+                                        console.log(key.exportKey('private'));
+                                        localStorage.setItem('public',key.exportKey('public'));
+                                        localStorage.setItem('private',key.exportKey('private'));
+                                          
                                     },
                                     (Error) => {
                                         console.log(Error);

@@ -206,9 +206,11 @@ function Profile(props) {
 
     const createGroup = (e) =>{
         e.preventDefault();
-        debugger
+        console.log(groupinfo.price === "0")
+        // debugger
         setGroupInfo(groupinfo)
-        if (groupinfo.price === '0') {
+        if (groupinfo.price === "0" || groupinfo.price === undefined) {
+            // debugger
             setGroupInfo({...groupinfo,freeOrNot:true})
         }else{
             setGroupInfo({...groupinfo,freeOrNot:false})
@@ -231,6 +233,7 @@ function Profile(props) {
                 toast('Group Is Created',{ position: toast.POSITION.TOP_CENTER })
                 props.addUserToList()
                 setGroupModel(false)
+                // setGroupInfo({});
             },
            (Error) => {
                console.log(Error);

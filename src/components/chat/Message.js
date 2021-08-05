@@ -122,7 +122,7 @@ function Message(props) {
     }
 
     const generateLink = () => {
-        alert(`http://${ip}/group/` + props.selectedGroup.groupId)
+        alert(`http://localhost:3000/group/` + props.selectedGroup.groupId)
     }
 
     const showUserList = () => {

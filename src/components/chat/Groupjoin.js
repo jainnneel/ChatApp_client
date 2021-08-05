@@ -54,11 +54,11 @@ const Groupjoin = () => {
                             alert('You are already member')
                         } else {
                             setGroup(res.data.data.group)
-                            // if (res.data.data.group.freeOrNot) {
-                            //     setFree(true)
-                            // } else {
-                            //     setNotFree(true)
-                            // }
+                            if (res.data.data.group.freeOrNot) {
+                                setFree(true)
+                            } else {
+                                setNotFree(true)
+                            }
                             setShow(true)
                         }
                     }
@@ -102,6 +102,14 @@ const Groupjoin = () => {
     }
 
     const joingroupwithpayment = () => {
+        console.log(group)
+        // debugger
+        if(group.freeOrNot){
+            joingroup()
+            return;
+        }
+
+
         try {
             axios.defaults.headers = {
                 Authorization: `Bearer ` + localStorage.getItem('token')
@@ -131,7 +139,7 @@ const Groupjoin = () => {
             currency: "INR",
             amount: group.price,
             order_id: data.orderId,
-            name: 'Stocks Update',
+            name: group.groupName,
             description: 'Pay your amount here.',
             image: '../../images/download.jpg',
             handler: function (response) {

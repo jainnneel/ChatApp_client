@@ -12,15 +12,6 @@ import {ip} from '../ipvalue'
 
 function Chat() {
     const history = useHistory();
-    // const[state,setState] = useState({
-    //         users: [],
-    //         messageToUser: null,
-    //         ws: null,
-    //         chats: [],
-    //         lastSentMessage: undefined,
-    //         clientConnected: false,
-    //         user : {}
-    // })
 
     const [user, setUser] = useState({})
     const [messageToUser, setmessageToUser] = useState({})
@@ -34,6 +25,7 @@ function Chat() {
     const [isUser, setIsUser] = useState(false)
     const [isChatOpen,setChatOpen] = useState(false)
     const ipaddr =`http://${ip}/chat`;
+
     useEffect(() => {
         document.title = "chat-window";
         if (localStorage.getItem('token') === undefined || localStorage.getItem('token') === null) {
